@@ -4,10 +4,16 @@
 
  <div align="center">
 
- | | |
- |---:|:---|
- | **Package** | [![PyPI](https://img.shields.io/pypi/v/pyaugur?color=blue)](https://pypi.org/project/pyaugur/) [![Downloads](https://static.pepy.tech/badge/pyaugur)](https://pepy.tech/project/pyaugur) |
- | **Meta** | [![License](https://img.shields.io/badge/license-GPLv3-green)](LICENSE) [![Stars](https://img.shields.io/github/stars/omicverse/py-Augur?style=social)](https://github.com/omicverse/py-Augur) |
+ <table>
+ <tr>
+   <td align="right"><b>Package</b></td>
+   <td><a href="https://pypi.org/project/pyaugur/"><img src="https://img.shields.io/pypi/v/pyaugur?color=blue" alt="PyPI"></a> <a href="https://pepy.tech/project/pyaugur"><img src="https://static.pepy.tech/badge/pyaugur" alt="Downloads"></a></td>
+ </tr>
+ <tr>
+   <td align="right"><b>Meta</b></td>
+   <td><a href="LICENSE"><img src="https://img.shields.io/badge/license-GPLv3-green" alt="License"></a> <a href="https://github.com/omicverse/py-Augur"><img src="https://img.shields.io/github/stars/omicverse/py-Augur?style=social" alt="Stars"></a></td>
+ </tr>
+ </table>
 
  </div>
 
