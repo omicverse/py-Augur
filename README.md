@@ -13,7 +13,7 @@
 
 ---
 
-# pyaugur
+# py-Augur
 
 A **pure-Python re-implementation of Augur** (Skinnider et al., *Nature Communications* 2021) for cell type prioritization in high-dimensional single-cell data.
 
