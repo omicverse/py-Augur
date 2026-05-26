@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyaugur"
+version = "0.1.0"
+description = "Python port of Augur: cell type prioritization in high-dimensional single-cell data"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Augur Python Port"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.9",
+    "pandas>=1.5",
+    "scikit-learn>=1.1",
+    "statsmodels>=0.13",
+]
+
+[project.optional-dependencies]
+anndata = ["anndata>=0.8"]
+dev = ["pytest>=7.0", "matplotlib>=3.5"]
+
+[project.urls]
+Homepage = "https://github.com/omicverse/py-augur"
+Repository = "https://github.com/omicverse/py-augur"
+Issues = "https://github.com/omicverse/py-augur/issues"
+
+[tool.setuptools.packages.find]
+include = ["pyaugur*"]

@@ -1,0 +1,38 @@
+# Pre-registered parity gate for pyaugur
+# READ-ONLY after Phase 0 commitment
+
+port_name: pyaugur
+upstream_r_package: Augur
+upstream_version: "1.0.3"
+upstream_license: GPL-3
+algorithm_class: stochastic_numerical
+# Augur uses random subsampling + random forest training, making it stochastic.
+# However, with fixed seed the output is reproducible, so we use Pearson correlation
+# on the mean AUC per cell type as the parity metric.
+
+canonical_fixture:
+  description: "sc_sim: simulated scRNA-seq (15,697 genes x 600 cells, 3 cell types)"
+  r_source: "Augur-master/data/sc_sim.rda"
+  python_source: "tests/sc_sim_expr.csv + tests/sc_sim_meta.csv"
+  seed: 42
+
+gates:
+  - output: AUC
+    metric: pearson_correlation
+    threshold: 0.97
+    description: "Pearson r of mean AUC per cell type between R and Python"
+
+parameters:
+  n_subsamples: 50
+  subsample_size: 20
+  folds: 3
+  var_quantile: 0.5
+  feature_perc: 0.5
+  classifier: rf
+  rf_params:
+    trees: 100
+    mtry: 2
+    importance: accuracy
+
+registered_by: "pyaugur port"
+registered_date: "2026-05-26"
