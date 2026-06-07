@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyaugur"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python port of Augur: cell type prioritization in high-dimensional single-cell data"
 readme = "README.md"
 license = {text = "GPL-3.0-or-later"}
