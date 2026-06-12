@@ -229,12 +229,12 @@ Plot differential prioritization results highlighting statistically significant 
 <img src="examples/test_important_features.png" width="32%">
 </p>
 <p>
-<img src="examples/test_umap_default.png" width="32%">
-<img src="examples/test_umap_rank.png" width="32%">
-<img src="examples/test_umap_plasma.png" width="32%">
+<img src="examples/test_umap_default.png" width="48%">
+<img src="examples/test_umap_rank.png" width="48%">
 </p>
 <p>
-<img src="examples/test_differential_prioritization.png" width="32%">
+<img src="examples/test_umap_plasma.png" width="48%">
+<img src="examples/test_differential_prioritization.png" width="48%">
 </p>
 
 ---
