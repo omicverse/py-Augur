@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 
 from pyaugur import (
     calculate_auc,
-    plot_lollipop, plot_umap, plot_important_features, plot_augur,
-    plot_scatterplot, plot_differential_prioritization,
+    plot_lollipop, plot_umap, plot_important_features,
+    plot_differential_prioritization,
 )
 
 np.random.seed(42)
@@ -55,39 +55,25 @@ fig, ax = plot_important_features(result)
 fig.savefig("examples/test_important_features.png", dpi=150, bbox_inches='tight')
 plt.close(fig)
 
-# ── 3. combined ──
-print("plot_augur ...")
-fig = plot_augur(result)
-fig.savefig("examples/test_augur_combined.png", dpi=150, bbox_inches='tight')
-plt.close(fig)
-
-# ── 4. umap default (frameon='small', omicverse style) ──
+# ── 3. umap default (frameon='small', omicverse style) ──
 print("plot_umap default ...")
 fig, ax = plot_umap(adata, result, mode="default", top_n=3)
 fig.savefig("examples/test_umap_default.png", dpi=150, bbox_inches='tight')
 plt.close(fig)
 
-# ── 5. umap rank ──
+# ── 4. umap rank ──
 print("plot_umap rank ...")
 fig, ax = plot_umap(adata, result, mode="rank", top_n=3, palette="viridis")
 fig.savefig("examples/test_umap_rank.png", dpi=150, bbox_inches='tight')
 plt.close(fig)
 
-# ── 6. umap plasma ──
+# ── 5. umap plasma ──
 print("plot_umap plasma ...")
 fig, ax = plot_umap(adata, result, mode="default", top_n=3, palette="plasma")
 fig.savefig("examples/test_umap_plasma.png", dpi=150, bbox_inches='tight')
 plt.close(fig)
 
-# ── 7. scatterplot (new) ──
-print("plot_scatterplot ...")
-np.random.seed(7)
-result2 = calculate_auc(adata, n_subsamples=10)
-fig, ax = plot_scatterplot(result, result2, top_n=3)
-fig.savefig("examples/test_scatterplot.png", dpi=150, bbox_inches='tight')
-plt.close(fig)
-
-# ── 8. differential prioritization (new) ──
+# ── 6. differential prioritization ──
 print("plot_differential_prioritization ...")
 dp_df = pd.DataFrame({
     'cell_type': cell_types,

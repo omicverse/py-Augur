@@ -7,8 +7,6 @@ from .plotting import (
     plot_lollipop,
     plot_umap,
     plot_important_features,
-    plot_augur,
-    plot_scatterplot,
     plot_differential_prioritization,
 )
 
@@ -21,7 +19,5 @@ __all__ = [
     "plot_lollipop",
     "plot_umap",
     "plot_important_features",
-    "plot_augur",
-    "plot_scatterplot",
     "plot_differential_prioritization",
 ]

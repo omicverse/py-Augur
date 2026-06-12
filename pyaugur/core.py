@@ -221,7 +221,7 @@ def calculate_auc(
 
         # Per-subsample iteration
         for subsample_idx in range(1, n_iter + 1):
-            rng = np.random.default_rng(seed)
+            rng = np.random.default_rng(seed + subsample_idx)
 
             # Optionally permute labels
             if augur_mode == "permute":
@@ -256,10 +256,11 @@ def calculate_auc(
                 if sparse.issparse(X_sub):
                     X_sub = X_sub.toarray()
 
-                # Remove zero-variance features (colVars > 0)
-                col_vars = np.var(X_sub, axis=0, ddof=1)
+                # Remove zero-variance features (rowVars > 0)
+                # X_sub is (genes, cells); variance across cells (axis=1)
+                col_vars = np.var(X_sub, axis=1, ddof=1)
                 nonzero_var = col_vars > 0
-                X_sub = X_sub[:, nonzero_var]
+                X_sub = X_sub[nonzero_var, :]
 
             # Transpose: R uses genes x cells, sklearn uses cells x genes
             if sparse.issparse(X_sub):
@@ -283,7 +284,6 @@ def calculate_auc(
                 y_test = y_sub[test_idx]
 
                 # Train model
-                np.random.seed(1)  # Match R's set.seed(1) in seeded_rf
                 if classifier == "rf":
                     model = _FastRandomForest(
                         n_estimators=rf_params["trees"],
@@ -481,11 +481,13 @@ def _compute_classification_metrics(y_true, y_pred, y_prob, classes, multiclass)
                 labels=classes
             )
         else:
-            # Find index of positive class
+            # Compute AUC for an arbitrary class, then take max(auc, 1-auc)
+            # to ensure label-order invariance
             pos_idx = np.where(classes == np.unique(y_true)[1])[0][0]
-            metrics["roc_auc"] = roc_auc_score(
+            raw_auc = roc_auc_score(
                 y_true, y_prob[:, pos_idx], labels=classes
             )
+            metrics["roc_auc"] = max(raw_auc, 1 - raw_auc)
     except ValueError:
         metrics["roc_auc"] = np.nan
 

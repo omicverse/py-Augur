@@ -39,7 +39,7 @@ pip install pyaugur
 ```python
 import numpy as np
 import pandas as pd
-from pyaugur import calculate_auc, plot_lollipop, plot_umap, plot_augur
+from pyaugur import calculate_auc, plot_lollipop, plot_umap, plot_important_features
 
 # Expression matrix: genes x cells
 expr = pd.read_csv("expression.csv", index_col=0).values
@@ -50,7 +50,7 @@ print(result["AUC"])  # Mean AUC per cell type, ranked
 
 # Visualize results
 plot_lollipop(result)
-plot_augur(result)  # Combined lollipop + feature importance
+plot_important_features(result)  # Top features per cell type
 ```
 
 Results are returned as a dictionary:
@@ -200,8 +200,6 @@ from pyaugur import (
     plot_lollipop,                    # Lollipop plot for AUC/CCC values
     plot_umap,                        # UMAP embeddings with omicverse style
     plot_important_features,          # Top important features per cell type
-    plot_augur,                       # Combined lollipop + feature importance
-    plot_scatterplot,                 # Compare two Augur results
     plot_differential_prioritization, # Differential prioritization scatter
 )
 ```
@@ -212,19 +210,11 @@ Create a lollipop plot showing cell type priorities (AUC values) ranked.
 
 ### `plot_umap(input, augur_results, mode="default", ...)`
 
-Superimpose cell type prioritizations onto a UMAP plot. Styled after omicverse embeddings: axis arrows (`frameon='small'`), inset colorbar, rasterized scatter points.
+Superimpose cell type prioritizations onto a UMAP plot. Styled after omicverse embeddings: axis arrows (`frameon='small'`), right-side colorbar, rasterized scatter points.
 
 ### `plot_important_features(augur_results, cell_type=None, top_n=10, ...)`
 
 Plot the most important features (genes) for a cell type.
-
-### `plot_augur(augur_results, top_n=None, ...)`
-
-Create a combined visualization with lollipop and feature importance plots.
-
-### `plot_scatterplot(augur1, augur2, top_n=0, ...)`
-
-Compare two cell type prioritization results as a scatterplot. Points colored by delta-AUC using a coolwarm colormap.
 
 ### `plot_differential_prioritization(results, top_n=0, ...)`
 
@@ -237,7 +227,6 @@ Plot differential prioritization results highlighting statistically significant 
 <p>
 <img src="examples/test_lollipop.png" width="32%">
 <img src="examples/test_important_features.png" width="32%">
-<img src="examples/test_augur_combined.png" width="32%">
 </p>
 <p>
 <img src="examples/test_umap_default.png" width="32%">
@@ -245,7 +234,6 @@ Plot differential prioritization results highlighting statistically significant 
 <img src="examples/test_umap_plasma.png" width="32%">
 </p>
 <p>
-<img src="examples/test_scatterplot.png" width="32%">
 <img src="examples/test_differential_prioritization.png" width="32%">
 </p>
 
